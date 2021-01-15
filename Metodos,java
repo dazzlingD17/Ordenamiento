@@ -1,0 +1,60 @@
+//MARIANA DAZZLING DIAZ DE JESUS
+//SAMARA GUTIERREZ VALLE
+package metordenamiento;
+
+/**
+ *
+ * @author dazz
+ */
+public class Metodos {
+ 
+
+
+
+    public void shell(int arreglo[]) {
+        int i, j, k, aux, salto;
+        salto = arreglo.length / 2;
+        while (salto > 0) {
+            for (i = salto; i < arreglo.length; i++) {
+                j = i - salto;
+                while (j >= 0) {
+                    k = j + salto;
+                    if (arreglo[j] > arreglo[k]) {
+                        aux = arreglo[j];
+                        arreglo[j] = arreglo[k];
+                        arreglo[k] = aux;
+                        j -= salto;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            salto /= 2;
+        }
+    }
+
+    public int[] Radix(int arreglo[]) {
+        int i, j, x;
+        for (x = Integer.SIZE - 1; x >= 0; x--) {
+            int aux[] = new int[arreglo.length];
+            j = 0;
+            for (i = 0; i < arreglo.length; i++) {
+                boolean mov = arreglo[i] << x >= 0;
+                if (x == 0 ? !mov : mov) {
+                    aux[j] = arreglo[i];
+                    j++;
+                } else {
+                    arreglo[i - j] = arreglo[i];
+                }
+            }
+            for (i = j; i < aux.length; i++) {
+                aux[i] = arreglo[i - j];
+            }
+            arreglo = aux;
+        }
+        return arreglo;
+    }
+
+}
+    
+
